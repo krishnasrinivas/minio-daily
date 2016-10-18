@@ -58,7 +58,7 @@ all: install
 checks:
 	@echo "Checking deps:"
 	@(env bash $(PWD)/buildscripts/checkdeps.sh)
-	@(env bash $(PWD)/buildscripts/checkgopath.sh)
+#@(env bash $(PWD)/buildscripts/checkgopath.sh)
 
 getdeps: checks
 	@go get -u github.com/golang/lint/golint && echo "Installed golint:"

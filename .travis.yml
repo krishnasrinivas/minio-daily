@@ -1,5 +1,5 @@
 go_import_path: github.com/minio/minio
-sudo: required
+#sudo: required
 
 dist: trusty
 
@@ -13,14 +13,17 @@ os:
 
 env:
 - ARCH=x86_64
-- ARCH=i686
 
-script:
-- make test GOFLAGS="-race"
-- make coverage
-
-after_success:
-- bash <(curl -s https://codecov.io/bash)
+branches:
+  only:
+  - daily
 
 go:
 - 1.7.1
+
+addons:
+  artifacts:
+    s3_region: "us-west-2"
+    paths:
+      - $GOPATH/bin/minio
+    debug: true
